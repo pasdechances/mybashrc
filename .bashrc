@@ -70,6 +70,8 @@ alias ll='ls -alrtF'
 alias la='ls -A'
 alias l='ls -CF'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias rm=remove
+alias rem=delete
 
 # Alias definitions.
 if [ -f ~/.bash_aliases ]; then
@@ -91,4 +93,29 @@ function parse_git_branch() {
     if [[ ! -z $git ]]; then
         echo "[${git}]"
     fi
+}
+
+function remove(){
+    for el in ${@}; do
+        if [[ ! -d ~/trash ]];then
+            mkdir -p ~/trash
+        fi
+        mv  $el ~/trash
+    done
+}
+
+function delete(){
+    for el in ${@}; do
+        if [ -d $el ];then
+            echo "Le dossier $el sera definitivement supprimé est vous sur de vouloir continuer ? (Yes/No)"
+        else
+            echo "Le fichier $el sera definitivement supprimé est vous sur de vouloir continuer ? (Yes/No)"
+        fi
+        read reponse
+        if [[ "$reponse" == "Yes" ]];then 
+            /bin/rm -rf $el
+        else
+            echo "La suppression a été annulée"
+        fi
+    done
 }
