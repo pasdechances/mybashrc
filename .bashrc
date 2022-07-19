@@ -38,7 +38,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='\[\e[40;1;36m\]\[\033[01;32m\][\D{%d-%m-%Y %H:%M:%S}] ${debian_chroot:+($debian_chroot)}\u@\h:\[\033[01;34m\]\w \[\033[31m\] $(parse_git_branch) \[\e[40;1;36m\]  >\[\033[00m\]\n'
+    PS1='\[\e[40;1;36m\]\[\033[01;32m\][\D{%d-%m-%Y %H:%M:%S}] ${debian_chroot:+($debian_chroot)}\u@\h: \[\033[01;34m\]\w \[\033[31m\] $(parse_git_branch) \[\e[40;1;36m\]  >\[\033[00m\]\n'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
